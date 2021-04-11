@@ -1,4 +1,4 @@
-@extends('layouts.crud')
+@extends('layouts.carros')
 @section('ver')
     <h4 class="text-center">Dados do carro</h4>
     <table class="table">
@@ -27,9 +27,9 @@
         </tr>
         </thead>
         <tbody>
-            <td> {{$carros->relcarros->id}} </td>
-            <td> {{$carros->relcarros->name}} </td>
-            <td> {{$carros->relcarros->email}} </td>
+        <td> {{$carros->relcarros->id}} </td>
+        <td> {{$carros->relcarros->name}} </td>
+        <td> {{$carros->relcarros->email}} </td>
         </tbody>
     </table>
 

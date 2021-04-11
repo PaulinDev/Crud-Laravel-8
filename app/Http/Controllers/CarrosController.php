@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Criarcarro;
 use App\Models\Carro;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -11,17 +12,17 @@ class CarrosController extends Controller
     public function index()
     {
         $carros = carro::with('relcarros')->get();
-        return view('carros', ['carros' => $carros]);
+        return view('car.car-index', ['carros' => $carros]);
 
     }
 
-    public function visualizar($id)
+    public function get($id)
     {
         $carros = carro::with('relcarros')->find($id);
-        return view('visualizar', ['carros' => $carros]);
+        return view('car.car-get', ['carros' => $carros]);
     }
 
-    public function criar(Request $request)
+    public function new(Criarcarro $request)
     {
         $carro = new Carro();
         $carro->modelo = $request->modelo;
@@ -29,10 +30,10 @@ class CarrosController extends Controller
         $carro->ano = $request->ano;
         $carro->user_id = $request->user;
         $carro->save();
-        return redirect()->route('dashboard');
+        return redirect()->route('car.get.view');
     }
 
-    public function editar($id, Request $request)
+    public function edit($id, Request $request)
     {
         $carro = carro::find($id);
         $carro->modelo = $request->modelo;
@@ -40,13 +41,13 @@ class CarrosController extends Controller
         $carro->ano = $request->ano;
         $carro->user_id = $request->user;
         $carro->save();
-        return redirect()->route('dashboard');
+        return redirect()->route('car.get.view');
     }
 
-    public function deletar($id)
+    public function delete($id)
     {
         $carro = carro::find($id);
         $carro->delete();
-        return redirect()->route('dashboard');
+        return redirect()->route('car.get.view');
     }
 }

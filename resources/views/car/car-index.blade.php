@@ -1,4 +1,4 @@
-@extends('layouts.crud')
+@extends('layouts.carros')
 @section('lista-carro')
     <h3 class="text-center">Lista de Carros</h3>
     @csrf
@@ -23,9 +23,9 @@
                 <td>
                     {{$carro->relcarros->name}}
                 </td>
-                <td><a href="{{route('visualizar', $carro->id)}}"><i class="fas fa-eye"></i></a><a
-                        href="{{route('editar', $carro->id)}}"><i class="fas fa-pencil-alt"></i></a>
-                    <a href="{{route('deletar', $carro->id)}}" class="apagar" id="{{$carro->id}}"><i
+                <td><a href="{{route('car.get.model', $carro->id)}}"><i class="fas fa-eye"></i></a><a
+                        href="{{route('car.edit.view', $carro->id)}}"><i class="fas fa-pencil-alt"></i></a>
+                    <a href="{{route('car.delete.model', $carro->id)}}" class="apagar" id="{{$carro->id}}"><i
                             class="fas fa-trash-alt"></i></a></td>
             </tr>
         @endforeach
@@ -33,5 +33,5 @@
     </table>
 
     <h3 class="text-center">Cadastro de Carros</h3>
-    <a href="criar">Criar carro</a>
+    <a href="{{route('car.new.view')}}">Criar carro</a>
 @endsection
